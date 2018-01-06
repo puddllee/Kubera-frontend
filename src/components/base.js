@@ -16,6 +16,10 @@ import Groups from 'components/groups';
 import Profile from 'components/profile';
 
 export default class Base extends React.Component {
+  componentWillMount(){
+    this.props.onMount();
+  }
+
   render(){
     injectGlobal`
       body {

@@ -9,7 +9,7 @@ import createHistory from 'history/createBrowserHistory';
 
 import ApiClient from 'shared/apiClient';
 import DevTools from 'components/devTools';
-import Base from 'components/base';
+import BaseContainer from 'containers/baseContainer';
 import clientMiddleware from 'shared/middleware/clientMiddleware';
 
 class App extends Component {
@@ -44,8 +44,9 @@ class App extends Component {
     return (
       <Provider store={store}>
         <div>
+          <DevTools/>
           <Router history={history}>
-            <Base></Base>
+            <BaseContainer/>
           </Router>
         </div>
       </Provider>
