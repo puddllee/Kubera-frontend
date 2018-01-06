@@ -1,14 +1,15 @@
 import React, { Component } from 'react';
 import {Provider} from 'react-redux';
-import {Provider as Rebass} from 'rebass';
 import {routerMiddleware} from 'react-router-redux';
 import {Router} from 'react-router-dom';
 import thunk from 'redux-thunk';
 import {createStore as _createStore, applyMiddleware, compose} from 'redux';
 import createHistory from 'history/createBrowserHistory';
 
+
 import ApiClient from 'shared/apiClient';
 import DevTools from 'components/devTools';
+import Base from 'components/base';
 import clientMiddleware from 'shared/middleware/clientMiddleware';
 
 class App extends Component {
@@ -44,9 +45,7 @@ class App extends Component {
       <Provider store={store}>
         <div>
           <Router history={history}>
-            <Rebass>
-
-            </Rebass>
+            <Base></Base>
           </Router>
         </div>
       </Provider>
