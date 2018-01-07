@@ -8,6 +8,7 @@ import {
   Divider
 } from 'rebass';
 import CoinListItem from 'components/coinListItem';
+import PriceChart from 'components/priceChart';
 import colors from 'shared/colors';
 
 export default class Home extends React.Component {
@@ -73,6 +74,9 @@ export default class Home extends React.Component {
       )
     }
 
+    const chartHeight = window.innerHeight/4;
+    const chartWidth = 4*window.innerWidth/5;
+
     return (
       <Flex wrap m={3}>
         <Box width={1}>
@@ -80,6 +84,7 @@ export default class Home extends React.Component {
           <Divider color={colors.navy}/>
         </Box>
         <Box width={1} mx="auto">
+          <PriceChart coins={coins.histories} width={chartWidth} height={chartHeight}/>
         </Box>
         <Box width={1}>
           <form onSubmit={this.handleFilterCoins.bind(this)}>
