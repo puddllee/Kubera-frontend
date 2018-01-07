@@ -5,7 +5,6 @@ import {
   Flex,
   Box,
 } from 'rebass';
-import {Redirect} from 'react-router-dom';
 import GoogleLoginButton from 'components/buttons/googleLoginButton';
 
 export default class Login extends React.Component {

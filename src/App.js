@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import {Provider} from 'react-redux';
-import {routerMiddleware} from 'react-router-redux';
+import {routerMiddleware, syncHistoryWithStore} from 'react-router-redux';
 import {Router, Switch, Route} from 'react-router-dom';
 import thunk from 'redux-thunk';
 import {createStore as _createStore, applyMiddleware, compose} from 'redux';
@@ -48,21 +48,20 @@ class App extends Component {
       return store;
     };
 
-    const history = createHistory();
-    const store = createStore(history);
+    const browserHistory = createHistory();
+    const store = createStore(browserHistory);
+    syncHistoryWithStore(browserHistory, store);
 
     return (
       <Provider store={store}>
         <div>
           <DevTools/>
-          <Router history={history}>
-            <div>
-              <Switch>
-                <Route path="/auth/:provider/callback" component={AuthCallbackContainer}/>
-                <Route path="/login" component={LoginContainer}/>
-                <Route path="/" component={BaseContainer}/>
-              </Switch>
-            </div>
+          <Router history={browserHistory}>
+            <Switch>
+              <Route path="/auth/:provider/callback" component={AuthCallbackContainer}/>
+              <Route path="/login" component={LoginContainer}/>
+              <Route path="/" component={BaseContainer}/>
+            </Switch>
           </Router>
         </div>
       </Provider>
