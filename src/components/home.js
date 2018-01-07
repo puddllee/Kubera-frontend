@@ -3,6 +3,7 @@ import {
   Flex,
   Box,
   Button,
+  Input,
   Heading,
   Divider
 } from 'rebass';
@@ -14,13 +15,29 @@ export default class Home extends React.Component {
     super(props);
 
     this.state = {
+      filterQuery: '',
       selectedCoins: [],
+      filteredCoins: null,
       visibleCoinLimit: 50
     }
   }
 
   componentWillMount(){
     this.props.onMount();
+  }
+
+  handleFilterCoins(e){
+    e.preventDefault();
+    const query = this.state.filterQuery;
+    const coins = this.props.coins.coinList;
+    const filteredCoins = coins.filter((c) => {
+      return c.symbol.toLowerCase().includes(query) || c.name.toLowerCase().includes(query);
+    });
+    this.setState({filteredCoins})
+  }
+
+  handleFilterQueryChange(e){
+    this.setState({filterQuery: e.target.value});
   }
 
   handleShowMoreCoins(){
@@ -41,8 +58,8 @@ export default class Home extends React.Component {
 
   render() {
     const {coins} = this.props;
-    const {visibleCoinLimit} = this.state;
-    const visibleCoins = coins.coinList.slice(0, visibleCoinLimit);
+    const {visibleCoinLimit, filteredCoins} = this.state;
+    const visibleCoins = filteredCoins ? filteredCoins.slice(0, visibleCoinLimit) : coins.coinList.slice(0, visibleCoinLimit);
 
     return (
       <Flex wrap m={3}>
@@ -51,6 +68,14 @@ export default class Home extends React.Component {
           <Divider color={colors.navy}/>
         </Box>
         <Box width={1} mx="auto">
+        </Box>
+        <Box width={1}>
+          <form onSubmit={this.handleFilterCoins.bind(this)}>
+            <Input name="query"
+              onChange={this.handleFilterQueryChange.bind(this)}
+              placeholder='Filter Coins by name or symbol'
+            />
+          </form>
         </Box>
         {visibleCoins.map((c, idx) => (
           <Box width={[1, 1/2, 1/3, 1/4, 1/5]}  key={idx} onClick={this.handleCoinSelect(c.symbol).bind(this)}>
