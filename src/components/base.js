@@ -12,7 +12,7 @@ import RouterLink from 'components/routerLink';
 import Home from 'components/home';
 import Exchange from 'components/exchange';
 import Groups from 'components/groups';
-import Profile from 'components/profile';
+import ProfileContainer from 'containers/profileContainer';
 
 export default class Base extends React.Component {
   componentWillMount(){
@@ -34,7 +34,7 @@ export default class Base extends React.Component {
             <Route exact path="/" component={Home}/>
             <Route exact path="/exchange" component={Exchange}/>
             <Route exact path="/groups" component={Groups}/>
-            <Route exact path="/profile" component={Profile}/>
+            <Route exact path="/profile" component={ProfileContainer}/>
           </Box>
         </Flex>
       </Rebass>

@@ -9,17 +9,15 @@ import {Redirect} from 'react-router-dom';
 import GoogleLoginButton from 'components/buttons/googleLoginButton';
 
 export default class Login extends React.Component {
+  componentWillMount(){
+    this.props.onMount(this.props.auth.profile);
+  }
+
   handleLoginButtonClick(){
     this.props.onLoginButtonClick();
   }
 
   render(){
-    const {auth} = this.props;
-
-    if (auth.profile.id) {
-      return (<Redirect to="/"/>);
-    }
-
     return (
       <Rebass>
         <Flex wrap>
