@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import {Provider} from 'react-redux';
 import {routerMiddleware} from 'react-router-redux';
-import {Router} from 'react-router-dom';
+import {Router, Switch, Route} from 'react-router-dom';
 import thunk from 'redux-thunk';
 import {createStore as _createStore, applyMiddleware, compose} from 'redux';
 import createHistory from 'history/createBrowserHistory';
@@ -10,6 +10,7 @@ import createHistory from 'history/createBrowserHistory';
 import ApiClient from 'shared/apiClient';
 import DevTools from 'components/devTools';
 import BaseContainer from 'containers/baseContainer';
+import LoginContainer from 'containers/loginContainer';
 import clientMiddleware from 'shared/middleware/clientMiddleware';
 
 class App extends Component {
@@ -46,7 +47,12 @@ class App extends Component {
         <div>
           <DevTools/>
           <Router history={history}>
-            <BaseContainer/>
+            <div>
+              <Switch>
+                <Route path="/login" component={LoginContainer}/>
+                <Route path="/" component={BaseContainer}/>
+              </Switch>
+            </div>
           </Router>
         </div>
       </Provider>

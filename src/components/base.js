@@ -6,7 +6,8 @@ import {
   Box,
 } from 'rebass';
 import {
-  Route
+  Route,
+  Redirect
 } from 'react-router-dom';
 
 import RouterLink from 'components/routerLink';
@@ -17,7 +18,8 @@ import Profile from 'components/profile';
 
 export default class Base extends React.Component {
   componentWillMount(){
-    this.props.onMount();
+    const {auth} = this.props;
+    this.props.onMount(auth);
   }
 
   render(){
@@ -27,6 +29,14 @@ export default class Base extends React.Component {
         background-color: #f4f4f4;
       }
     `;
+
+    const {profile} = this.props;
+
+    // If the user is not logged in, redirect to the login screen
+    if(!profile.id){
+      return (<Redirect to="/login"/>)
+    }
+
     return (
       <Rebass>
         <Flex wrap>
