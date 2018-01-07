@@ -3,8 +3,8 @@ import {push} from 'react-router-redux'
 import * as constants from "shared/constants";
 import Profile from 'components/profile';
 
-const mapStateToProps = () => {
-  return {};
+const mapStateToProps = (state) => {
+  return {profile: state.auth.profile};
 };
 
 const mapDispatchToProps = (dispatch) => {

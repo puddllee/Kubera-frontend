@@ -12,10 +12,11 @@ export default class Profile extends React.Component {
   }
 
   render(){
+    const {profile} = this.props;
     return (
       <Flex wrap m={3}>
         <Box width={1}>
-          <Heading f={9}>Profile</Heading>
+          <Heading f={9}>{profile.name}</Heading>
         </Box>
         <Box width={1} mt={3} mx="auto">
           <ButtonOutline onClick={this.handleLogoutButtonClick.bind(this)}>Logout</ButtonOutline>
