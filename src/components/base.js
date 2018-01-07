@@ -10,7 +10,7 @@ import {
 
 import Messages from 'containers/messagesContainer';
 import RouterLink from 'components/routerLink';
-import Home from 'components/home';
+import HomeContainer from 'containers/homeContainer';
 import Exchange from 'components/exchange';
 import Groups from 'components/groups';
 import ProfileContainer from 'containers/profileContainer';
@@ -32,7 +32,7 @@ export default class Base extends React.Component {
             <RouterLink exact to="/profile">Profile</RouterLink>
           </Box>
           <Box width={1} m={1}>
-            <Route exact path="/" component={Home}/>
+            <Route exact path="/" component={HomeContainer}/>
             <Route exact path="/exchange" component={Exchange}/>
             <Route exact path="/groups" component={Groups}/>
             <Route exact path="/profile" component={ProfileContainer}/>
