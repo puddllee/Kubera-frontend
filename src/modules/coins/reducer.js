@@ -4,7 +4,8 @@ import {
   GET_COINS_FAILURE,
   GET_COIN_HISTORY,
   GET_COIN_HISTORY_SUCCESS,
-  GET_COIN_HISTORY_FAILURE
+  GET_COIN_HISTORY_FAILURE,
+  SET_SELECTED_COIN_SYMBOLS
 } from './actions'
 
 function initialState(){
@@ -12,6 +13,7 @@ function initialState(){
     coinList: [],
     loading: {coinList: true},
     histories: {},
+    selectedCoinSymbols: [],
   }
 }
 
@@ -50,7 +52,12 @@ export default function reducer(state=initialState(), action={}){
       return {
         ...state,
         loading: {...state.loading, coinHistory: false}
-      }
+      };
+    case SET_SELECTED_COIN_SYMBOLS:
+      return {
+        ...state,
+        selectedCoinSymbols: action.payload
+      };
     default:
       return state;
   }

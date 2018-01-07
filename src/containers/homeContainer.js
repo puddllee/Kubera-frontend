@@ -11,6 +11,10 @@ const mapDispatchToProps = (dispatch) => {
   return {
     onMount: () => {
       dispatch(coinActions.getCoins());
+    },
+    onCoinSelect: (symbol) => {
+      dispatch(coinActions.getCoinHistory(symbol));
+      dispatch(coinActions.toggleCoinSelect(symbol));
     }
   };
 };

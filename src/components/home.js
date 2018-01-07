@@ -17,7 +17,6 @@ export default class Home extends React.Component {
 
     this.state = {
       filterQuery: '',
-      selectedCoins: [],
       filteredCoins: null,
       visibleCoinLimit: 50
     }
@@ -47,13 +46,7 @@ export default class Home extends React.Component {
 
   handleCoinSelect(symbol){
     return () => {
-      if (this.state.selectedCoins.includes(symbol)){
-        // Remove if already selected
-        this.setState({...this.state, selectedCoins: this.state.selectedCoins.filter((c)=>c.symbol !== symbol)});
-      } else {
-        // Else add to the selected coins
-        this.setState({...this.state, selectedCoins: [...this.state.selectedCoins, symbol]})
-      }
+      this.props.onCoinSelect(symbol);
     }
   }
 
@@ -76,6 +69,9 @@ export default class Home extends React.Component {
 
     const chartHeight = window.innerHeight/4;
     const chartWidth = 4*window.innerWidth/5;
+    const chartedCoins = Object.keys(coins.histories).filter((s)=>coins.selectedCoinSymbols.includes(s)).map((s)=>{
+      return coins.histories[s];
+    });
 
     return (
       <Flex wrap m={3}>
@@ -84,7 +80,7 @@ export default class Home extends React.Component {
           <Divider color={colors.navy}/>
         </Box>
         <Box width={1} mx="auto">
-          <PriceChart coins={coins.histories} width={chartWidth} height={chartHeight}/>
+          <PriceChart coins={chartedCoins} width={chartWidth} height={chartHeight}/>
         </Box>
         <Box width={1}>
           <form onSubmit={this.handleFilterCoins.bind(this)}>
@@ -95,8 +91,8 @@ export default class Home extends React.Component {
           </form>
         </Box>
         {visibleCoins.map((c, idx) => (
-          <Box width={[1, 1/2, 1/3, 1/4, 1/5]}  key={idx} onClick={this.handleCoinSelect(c.symbol).bind(this)}>
-            <CoinListItem coin={c}/>
+          <Box width={[1, 1/2, 1/3, 1/4, 1/5]}  key={idx}>
+            <CoinListItem coin={c} onClick={this.handleCoinSelect(c.symbol).bind(this)}/>
           </Box>
         ))}
         {visibleCoins.length !== coins.coinList.length &&

@@ -16,6 +16,7 @@ export default class CoinListItem extends React.Component {
   }
 
   handleClick(){
+    this.props.onClick();
     this.setState({selected: !this.state.selected});
   }
 

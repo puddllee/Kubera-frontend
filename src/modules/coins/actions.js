@@ -4,6 +4,7 @@ export const GET_COINS_FAILURE = 'coins/GET_COINS_FAILURE';
 export const GET_COIN_HISTORY = 'coins/GET_COIN_HISTORY';
 export const GET_COIN_HISTORY_SUCCESS = 'coins/GET_COIN_HISTORY_SUCCESS';
 export const GET_COIN_HISTORY_FAILURE = 'coins/GET_COIN_HISTORY_FAILURE';
+export const SET_SELECTED_COIN_SYMBOLS = 'coins/SET_SELECTED_COIN_SYMBOLS';
 
 export function getCoins(){
   return (dispatch) => {
@@ -29,4 +30,17 @@ export function getCoinHistory(symbol){
       }
     })
   }
+}
+
+export function toggleCoinSelect(symbol){
+  return (dispatch, getState) => {
+    const coins = getState().coins;
+    const {selectedCoinSymbols} = coins;
+
+    if (selectedCoinSymbols.includes(symbol)) {
+      dispatch({type: SET_SELECTED_COIN_SYMBOLS, payload: selectedCoinSymbols.filter((s)=>s!==symbol)});
+    } else {
+      dispatch({type: SET_SELECTED_COIN_SYMBOLS, payload: [...selectedCoinSymbols, symbol]});
+    }
+  };
 }
