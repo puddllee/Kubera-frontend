@@ -27,9 +27,22 @@ export default class Home extends React.Component {
     this.setState({...this.state, visibleCoinLimit: this.state.visibleCoinLimit+50})
   }
 
+  handleCoinSelect(symbol){
+    return () => {
+      if (this.state.selectedCoins.includes(symbol)){
+        // Remove if already selected
+        this.setState({...this.state, selectedCoins: this.state.selectedCoins.filter((c)=>c.symbol !== symbol)});
+      } else {
+        // Else add to the selected coins
+        this.setState({...this.state, selectedCoins: [...this.state.selectedCoins, symbol]})
+      }
+    }
+  }
+
   render() {
     const {coins} = this.props;
-    const visibleCoins = coins.coinList.slice(0, this.state.visibleCoinLimit);
+    const {visibleCoinLimit} = this.state;
+    const visibleCoins = coins.coinList.slice(0, visibleCoinLimit);
 
     return (
       <Flex wrap m={3}>
@@ -40,7 +53,7 @@ export default class Home extends React.Component {
         <Box width={1} mx="auto">
         </Box>
         {visibleCoins.map((c, idx) => (
-          <Box width={[1, 1/2, 1/3, 1/4, 1/5]}  key={idx}>
+          <Box width={[1, 1/2, 1/3, 1/4, 1/5]}  key={idx} onClick={this.handleCoinSelect(c.symbol).bind(this)}>
             <CoinListItem coin={c}/>
           </Box>
         ))}
