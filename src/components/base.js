@@ -8,6 +8,7 @@ import {
   Route,
 } from 'react-router-dom';
 
+import Messages from 'containers/messagesContainer';
 import RouterLink from 'components/routerLink';
 import Home from 'components/home';
 import Exchange from 'components/exchange';
@@ -37,6 +38,7 @@ export default class Base extends React.Component {
             <Route exact path="/profile" component={ProfileContainer}/>
           </Box>
         </Flex>
+        <Messages/>
       </Rebass>
     )
   }

@@ -5,6 +5,7 @@ import {
   Flex,
   Box,
 } from 'rebass';
+import Messages from 'containers/messagesContainer';
 import GoogleLoginButton from 'components/buttons/googleLoginButton';
 
 export default class Login extends React.Component {
@@ -30,6 +31,7 @@ export default class Login extends React.Component {
 
           </Box>
         </Flex>
+        <Messages/>
       </Rebass>
     );
   }

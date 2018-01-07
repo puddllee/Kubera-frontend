@@ -5,6 +5,7 @@ import {
   Box,
   Heading
 } from 'rebass';
+import Messages from 'containers/messagesContainer';
 
 export default class AuthCallback extends React.Component {
   componentDidMount(){
@@ -16,7 +17,7 @@ export default class AuthCallback extends React.Component {
     // we must have successfully logged in. So
     // route to the base page.
     if (nextProps.auth.profile.id){
-      this.props.onProfileLoaded();
+      this.props.onProfileLoaded(nextProps.auth.profile);
     }
   }
 
@@ -28,6 +29,7 @@ export default class AuthCallback extends React.Component {
             <Heading f={1}>Loading</Heading>
           </Box>
         </Flex>
+        <Messages/>
       </Rebass>
     )
   }

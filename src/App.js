@@ -14,6 +14,7 @@ import BaseContainer from 'containers/baseContainer';
 import LoginContainer from 'containers/loginContainer';
 import AuthCallbackContainer from 'containers/authCallbackContainer';
 import clientMiddleware from 'shared/middleware/clientMiddleware';
+import alertMiddleware from 'shared/middleware/alertMiddleware';
 
 class App extends Component {
   render() {
@@ -29,7 +30,7 @@ class App extends Component {
       const data = window.__data;
       const reduxRouterMiddleware = routerMiddleware(history);
 
-      const middleware = [clientMiddleware(client), reduxRouterMiddleware, thunk];
+      const middleware = [alertMiddleware, clientMiddleware(client), reduxRouterMiddleware, thunk];
 
       const enhancer = compose(
         applyMiddleware(...middleware),

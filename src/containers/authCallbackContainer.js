@@ -3,6 +3,7 @@ import {parse} from 'qs';
 import {push} from 'react-router-redux';
 import AuthCallback from 'components/authCallback';
 import * as actions from 'modules/auth/actions';
+import * as messageActions from 'modules/messages/actions';
 
 const mapStateToProps = (state) => {
   const {auth} = state;
@@ -25,8 +26,9 @@ const mapDispatchToProps = (dispatch, ownProps) => {
         dispatch(push('/login'))
       }
     },
-    onProfileLoaded: () => {
-      dispatch(push('/'))
+    onProfileLoaded: (profile) => {
+      dispatch(push('/'));
+      dispatch(messageActions.addPrimaryMessage(`Welcome, ${profile.name}`))
     }
   };
 };
