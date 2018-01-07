@@ -8,7 +8,7 @@ export default class Exchange extends React.Component {
   render() {
     return (
       <Flex m={3}>
-        <Heading f={9}>Exchange</Heading>
+        <Heading f={[3,6,9]}>Exchange</Heading>
       </Flex>
     )
   }

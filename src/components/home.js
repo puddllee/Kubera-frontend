@@ -8,7 +8,7 @@ export default class Home extends React.Component {
   render() {
     return (
       <Flex m={3}>
-        <Heading is="h1" f={9}>Kubera</Heading>
+        <Heading is="h1" f={[3,6,9]}>Kubera</Heading>
       </Flex>
     )
   }

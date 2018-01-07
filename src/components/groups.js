@@ -8,7 +8,7 @@ export default class Groups extends React.Component {
   render() {
     return (
       <Flex m={3}>
-        <Heading f={9}>Groups</Heading>
+        <Heading f={[3,6,9]}>Groups</Heading>
       </Flex>
     )
   }
