@@ -20,11 +20,14 @@ export default class Home extends React.Component {
         <Box width={1}>
           <Heading is="h1" f={[3,6,9]}>Kubera</Heading>
         </Box>
-        <Box width={1/2}>
-          {visibleCoins.map((c, idx) => (
-            <CoinListItem coin={c} key={idx}/>
-          ))}
+        <Box width={1}>
+
         </Box>
+        {visibleCoins.map((c, idx) => (
+          <Box width={[1, 1/2, 1/3, 1/4, 1/5]}>
+            <CoinListItem coin={c} key={idx}/>
+          </Box>
+        ))}
       </Flex>
     )
   }

@@ -9,6 +9,7 @@ import {injectGlobal} from "styled-components";
 
 
 import ApiClient from 'shared/apiClient';
+import colors from 'shared/colors';
 import DevTools from 'components/devTools';
 import BaseContainer from 'containers/baseContainer';
 import LoginContainer from 'containers/loginContainer';
@@ -20,8 +21,8 @@ class App extends Component {
   render() {
     injectGlobal`
       body {
-        color: #001B44;
-        background-color: #f4f4f4;
+        color: ${colors.navy};
+        background-color: ${colors.lightGrey};
       }
     `;
 
