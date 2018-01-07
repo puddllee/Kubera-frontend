@@ -6,21 +6,28 @@ import {
   Box,
 } from 'rebass';
 import {Redirect} from 'react-router-dom';
+import GoogleLoginButton from 'components/buttons/googleLoginButton';
 
 export default class Login extends React.Component {
-  render(){
-    const {profile} = this.props;
+  handleLoginButtonClick(){
+    this.props.onLoginButtonClick();
+  }
 
-    if (profile.id) {
+  render(){
+    const {auth} = this.props;
+
+    if (auth.profile.id) {
       return (<Redirect to="/"/>);
     }
 
     return (
       <Rebass>
         <Flex wrap>
-          <Box width={[1, 3/5, 2/5]} px={2}>
+          <Box width={[1, 3/5, 2/5]} px={2} my="auto">
             <Heading f={9}>Kubera</Heading>
-            log in with googs
+            <Box m="auto" ml={2}>
+              <GoogleLoginButton onClick={this.handleLoginButtonClick.bind(this)}/>
+            </Box>
           </Box>
           <Box width={[0, 2/5, 3/5]} bg="black">
 

@@ -1,3 +1,5 @@
+import {push} from 'react-router-redux';
+
 export default function clientMiddleware(client){
   return ({dispatch, getState}) => {
     return (next) => (action) => {
@@ -21,11 +23,14 @@ export default function clientMiddleware(client){
           next({...rest, type: SUCCESS, payload});
         },
         (error) => {
-          next({...rest, type: FAILURE, error: true, content: error});
+          // If we receive a 401 unauthorized response, immediately boot user to login
+          if (error.err.status === 401){
+            dispatch(push('/login'))
+          }
+          console.log(error);
+          next({...rest, type: FAILURE, error: true, payload: error});
         }
-      ).catch((error) => {
-        next({...rest, type: FAILURE, error: true, content: error});
-      });
+      );
 
       return actionPromise;
     }

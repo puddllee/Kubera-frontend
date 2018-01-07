@@ -1,4 +1,5 @@
 import superagent from 'superagent'
+import * as constants from "shared/constants";
 
 const methods = ['get', 'post', 'put', 'patch', 'del'];
 
@@ -20,7 +21,13 @@ export default class ApiClient {
           request.send(data);
         }
 
-        request.end((err, {body}={}) => err ? reject(body||err) : resolve(body));
+        // If there is a token, set the authorization header
+        const token = window.localStorage.getItem(constants.API_STORAGE_KEY);
+        if(token){
+          request.set('Authorization', `Bearer ${token}`);
+        }
+
+        request.end((err, {body}={}) => err ? reject({body, err}) : resolve(body));
       });
     });
   }
