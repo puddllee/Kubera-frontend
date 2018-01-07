@@ -6,6 +6,7 @@ import thunk from 'redux-thunk';
 import {createStore as _createStore, applyMiddleware, compose} from 'redux';
 import createHistory from 'history/createBrowserHistory';
 import {injectGlobal} from "styled-components";
+import 'react-vis/dist/style.css';
 
 
 import ApiClient from 'shared/apiClient';
