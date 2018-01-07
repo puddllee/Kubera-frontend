@@ -21,7 +21,7 @@ export default function reducer(state=initialState(), action={}){
     case GET_COINS_SUCCESS:
       return {
         ...state,
-        loading: {...state.loading, coinList: true},
+        loading: {...state.loading, coinList: false},
         coinList: action.payload
       };
     case GET_COINS_FAILURE:

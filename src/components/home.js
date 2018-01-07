@@ -61,6 +61,18 @@ export default class Home extends React.Component {
     const {visibleCoinLimit, filteredCoins} = this.state;
     const visibleCoins = filteredCoins ? filteredCoins.slice(0, visibleCoinLimit) : coins.coinList.slice(0, visibleCoinLimit);
 
+    if (coins.loading.coinList){
+      return (
+        <Flex wrap m={3}>
+          <Box width={1}>
+            <Heading is="h1" f={[3,6,9]}>Kubera</Heading>
+            <Divider color={colors.navy}/>
+          </Box>
+          <Heading f={[1,2,3]} children="Loading Coins"/>
+        </Flex>
+      )
+    }
+
     return (
       <Flex wrap m={3}>
         <Box width={1}>
