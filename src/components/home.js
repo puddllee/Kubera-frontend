@@ -75,27 +75,26 @@ export default class Home extends React.Component {
 
     const chartHeight = window.innerHeight/4;
     const chartWidth = 4*window.innerWidth/5;
-    const chartedCoins = Object.keys(coins.histories).filter((s)=>coins.selectedCoinSymbols.includes(s)).map((s)=>{
-      return coins.histories[s];
-    });
-    const showChart = chartedCoins.filter((c)=>c.length > 0).length > 0;
+    const chartedCoins = coins.selectedCoinSymbols.map((s)=>({symbol: s, data: coins.histories[s]}));
+    const showChart = chartedCoins.filter((c)=>c.data.length > 0).length > 0;
 
     return (
-      <Flex wrap m={3}>
+      <Flex wrap m={[0,3]} flex="1 auto">
         <Box width={1}>
           <Heading is="h1" f={[3,6,9]}>Kubera</Heading>
           <Divider color={colors.navy}/>
         </Box>
         {showChart && (
-          <Box width={1} mx="auto">
+          <Box width={1} mx="auto" mb={5}>
             <PriceChart coins={chartedCoins} width={chartWidth} height={chartHeight}/>
           </Box>
         )}
         <Box width={1}>
           <form onSubmit={this.handleFilterCoins.bind(this)}>
             <Input name="query"
-              onChange={this.handleFilterQueryChange.bind(this)}
-              placeholder='Filter Coins by name or symbol'
+                  f={[1, 2, 3]}
+                  onChange={this.handleFilterQueryChange.bind(this)}
+                  placeholder='Filter Coins'
             />
           </form>
         </Box>

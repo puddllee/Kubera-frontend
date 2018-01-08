@@ -7,13 +7,15 @@ import {
   YAxis,
   HorizontalGridLines,
   VerticalGridLines,
-  LineSeries
+  LineSeries,
+  DiscreteColorLegend,
 } from 'react-vis';
 import colors from 'shared/colors';
 
 export default class PriceChart extends React.Component {
-  coinDataToXYCoords(data){
-    return data.map((d) => {
+  coinDataToXYCoords(coins, idx){
+    const coin = coins[idx];
+    return coin.data.map((d) => {
       return {x: d.time, y: d.close}
     });
   }
@@ -26,9 +28,11 @@ export default class PriceChart extends React.Component {
   render() {
     const {width, height, coins} = this.props;
     const XYP = styled(XYPlot)`margin: auto;`;
+
+    const legendEntries = coins.map((c)=>({title: c.symbol}));
     return (
       <XYP
-        margin={{left: 100, right: 100, bottom: 100}}
+        margin={{left: 60, right: 60, bottom: 60}}
         style={{margin: 'auto'}}
         width={width}
         height={height}
@@ -45,9 +49,10 @@ export default class PriceChart extends React.Component {
                tickFormat={this.formatUTS.bind(this)}
         />
         <YAxis title="$USD"/>
+        <DiscreteColorLegend items={legendEntries} orientation={'horizontal'}/>
         {Object.keys(coins).map((c, idx) => (
           <LineSeries key={idx}
-                      data={this.coinDataToXYCoords.bind(this)(coins[c])}
+                      data={this.coinDataToXYCoords.bind(this)(coins, idx)}
                       style={{
                         strokeLinejoin: 'round',
                         strokeWidth: 4
