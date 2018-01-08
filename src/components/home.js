@@ -26,6 +26,12 @@ export default class Home extends React.Component {
     this.props.onMount();
   }
 
+  componentWillReceiveProps(nextProps){
+    if (nextProps.coins.coinList.length !== this.props.coins.coinList.length){
+      this.props.onCoinListFetched(nextProps.coins.coinList);
+    }
+  }
+
   handleFilterCoins(e){
     e.preventDefault();
     const query = this.state.filterQuery;
