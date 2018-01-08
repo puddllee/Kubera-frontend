@@ -55,7 +55,7 @@ export default class PriceChart extends React.Component {
                       data={this.coinDataToXYCoords.bind(this)(coins, idx)}
                       style={{
                         strokeLinejoin: 'round',
-                        strokeWidth: 4
+                        strokeWidth: 1
                       }}
           />
         ))}
