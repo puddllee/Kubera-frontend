@@ -24,7 +24,7 @@ export default function clientMiddleware(client){
         },
         (error) => {
           // If we receive a 401 unauthorized response, immediately boot user to login
-          if (error.err.status === 401){
+          if (error.err && error.err.status === 401){
             dispatch(push('/login'))
           }
           console.log(error);

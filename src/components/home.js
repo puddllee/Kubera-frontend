@@ -60,6 +60,10 @@ export default class Home extends React.Component {
     const {coins} = this.props;
     const {visibleCoinLimit, filteredCoins} = this.state;
     const visibleCoins = filteredCoins ? filteredCoins.slice(0, visibleCoinLimit) : coins.coinList.slice(0, visibleCoinLimit);
+    const chartHeight = window.innerHeight/4;
+    const chartWidth = 4*window.innerWidth/5;
+    const chartedCoins = coins.selectedCoinSymbols.map((s)=>({symbol: s, data: coins.histories[s]}));
+    const showChart = chartedCoins.filter((c)=>c.data && c.data.length > 0).length > 0;
 
     if (coins.loading.coinList){
       return (
@@ -73,10 +77,6 @@ export default class Home extends React.Component {
       )
     }
 
-    const chartHeight = window.innerHeight/4;
-    const chartWidth = 4*window.innerWidth/5;
-    const chartedCoins = coins.selectedCoinSymbols.map((s)=>({symbol: s, data: coins.histories[s]}));
-    const showChart = chartedCoins.filter((c)=>c.data.length > 0).length > 0;
 
     return (
       <Flex wrap m={[0,3]} flex="1 auto">
@@ -86,7 +86,7 @@ export default class Home extends React.Component {
         </Box>
         {showChart && (
           <Box width={1} mx="auto" mb={5}>
-            <PriceChart coins={chartedCoins} width={chartWidth} height={chartHeight}/>
+            <PriceChart coins={chartedCoins} width={chartWidth} height={chartHeight} loading={coins.loading.coinHistory}/>
           </Box>
         )}
         <Box width={1}>

@@ -11,7 +11,7 @@ import {
 function initialState(){
   return {
     coinList: [],
-    loading: {coinList: true},
+    loading: {coinList: true, coinHistory: true},
     histories: {},
     selectedCoinSymbols: [],
   }

@@ -22,13 +22,16 @@ export function getCoins(){
 }
 
 export function getCoinHistory(symbol){
-  return (dispatch) => {
-    dispatch({
-      types: [GET_COIN_HISTORY, GET_COIN_HISTORY_SUCCESS, GET_COIN_HISTORY_FAILURE],
-      promise: (client) => {
-        return client.get(`/api/v1/coins/${symbol}/hist/`)
-      }
-    })
+  return (dispatch, getState) => {
+    // Only get the coin history if it does not yet exist in memory
+    if(!getState().coins.histories[symbol]){
+      dispatch({
+        types: [GET_COIN_HISTORY, GET_COIN_HISTORY_SUCCESS, GET_COIN_HISTORY_FAILURE],
+        promise: (client) => {
+          return client.get(`/api/v1/coins/${symbol}/hist/`)
+        }
+      })
+    }
   }
 }
 

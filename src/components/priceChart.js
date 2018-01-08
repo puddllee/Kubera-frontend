@@ -26,10 +26,15 @@ export default class PriceChart extends React.Component {
 
 
   render() {
-    const {width, height, coins} = this.props;
+    const {width, height, coins, loading} = this.props;
     const XYP = styled(XYPlot)`margin: auto;`;
 
+    if (loading){
+      return 'Loading Coin History';
+    }
+
     const legendEntries = coins.map((c)=>({title: c.symbol}));
+
     return (
       <XYP
         margin={{left: 60, right: 60, bottom: 60}}
