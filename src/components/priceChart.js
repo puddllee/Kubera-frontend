@@ -15,6 +15,7 @@ import colors from 'shared/colors';
 export default class PriceChart extends React.Component {
   coinDataToXYCoords(coins, idx){
     const coin = coins[idx];
+    coin.data = coin.data ? coin.data : [];
     return coin.data.map((d) => {
       return {x: d.time, y: d.close}
     });
