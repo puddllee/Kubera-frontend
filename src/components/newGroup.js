@@ -10,9 +10,12 @@ import {
   Field,
   reduxForm
 } from 'redux-form';
+import {
+ Link
+} from 'react-router-dom';
 
 const FormInput = (props) => (
-  <Box width={[1, 1/2]} my={3} mx="auto">
+  <Box width={[1, 1, 1/2]} p={3} my={3} mx="auto">
     <Text center>{props.label}</Text>
     <Input mt={2} type={props.type} onChange={props.input.onChange}/>
   </Box>
@@ -36,14 +39,14 @@ GroupForm = reduxForm({
 
 export default class NewGroup extends React.Component {
   handleSubmit(values){
-    console.log(values);
+    this.props.onSubmit(values);
   }
 
   render(){
     return (
     <Flex wrap>
-      <Box width={1/4}>
-
+      <Box width={[1/2, 1/4]}>
+        <Link to="/groups">Back to group list</Link>
       </Box>
       <Box width={1}>
         <GroupForm onSubmit={this.handleSubmit.bind(this)}/>

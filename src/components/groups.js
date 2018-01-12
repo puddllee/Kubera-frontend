@@ -4,6 +4,8 @@ import {
   Heading,
   Divider,
   Box,
+  Card,
+  Text,
   Lead,
   Button
 } from 'rebass';
@@ -49,8 +51,17 @@ export default class Groups extends React.Component {
             <Button my={2} mx="auto" is={Link} to="/groups/new">Create new group</Button>
           )}
         </Box>
-        <Box width={1}>
+        <Box width={1} pt={3}>
           <Route exact path="/groups/new" component={NewGroupContainer}/>
+          <Flex wrap>
+            {groups.map((group)=>(
+              <Card width={256} key={group.uid} p={3} m={2}>
+                <Text center>
+                  {group.name}
+                </Text>
+              </Card>
+            ))}
+          </Flex>
         </Box>
       </Flex>
     )
