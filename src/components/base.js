@@ -28,13 +28,13 @@ export default class Base extends React.Component {
           <Box width={1} mx={2}>
             <RouterLink exact to="/">Home</RouterLink>
             <RouterLink exact to="/exchange">Exchange</RouterLink>
-            <RouterLink exact to="/groups">Groups</RouterLink>
+            <RouterLink to="/groups">Groups</RouterLink>
             <RouterLink exact to="/profile">Profile</RouterLink>
           </Box>
           <Box width={1} m={1}>
             <Route exact path="/" component={HomeContainer}/>
             <Route exact path="/exchange" component={Exchange}/>
-            <Route exact path="/groups" component={GroupsContainer}/>
+            <Route path="/groups" component={GroupsContainer}/>
             <Route exact path="/profile" component={ProfileContainer}/>
           </Box>
         </Flex>

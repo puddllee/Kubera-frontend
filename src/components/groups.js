@@ -7,6 +7,8 @@ import {
   Lead,
   Button
 } from 'rebass';
+import {Route, Link}  from 'react-router-dom';
+import NewGroupContainer from 'containers/newGroupContainer';
 import colors from 'shared/colors';
 
 export default class Groups extends React.Component {
@@ -16,6 +18,8 @@ export default class Groups extends React.Component {
 
   render() {
     const {groups, loading} = this.props.groups;
+    const {pathname} = this.props.location;
+    const onMainPage = pathname === '/groups';
 
     if (loading.groups){
       return (
@@ -38,12 +42,14 @@ export default class Groups extends React.Component {
           <Divider color={colors.navy}/>
         </Box>
         <Box width={1}>
-          {groups.length === 0 && (
+          {groups.length === 0 && onMainPage && (
             <Lead ml="auto">You aren't in any groups! Would you like to create one?</Lead>
           )}
-          <Button my={2} mx="auto">Create new group</Button>
-
+          {onMainPage && (
+            <Button my={2} mx="auto" is={Link} to="/groups/new">Create new group</Button>
+          )}
         </Box>
+        <Route exact path="/groups/new" component={NewGroupContainer}/>
       </Flex>
     )
   }
