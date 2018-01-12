@@ -12,8 +12,8 @@ import Messages from 'containers/messagesContainer';
 import RouterLink from 'components/routerLink';
 import HomeContainer from 'containers/homeContainer';
 import Exchange from 'components/exchange';
-import Groups from 'components/groups';
 import ProfileContainer from 'containers/profileContainer';
+import GroupsContainer from 'containers/groupsContainer';
 
 export default class Base extends React.Component {
   componentWillMount(){
@@ -34,7 +34,7 @@ export default class Base extends React.Component {
           <Box width={1} m={1}>
             <Route exact path="/" component={HomeContainer}/>
             <Route exact path="/exchange" component={Exchange}/>
-            <Route exact path="/groups" component={Groups}/>
+            <Route exact path="/groups" component={GroupsContainer}/>
             <Route exact path="/profile" component={ProfileContainer}/>
           </Box>
         </Flex>
