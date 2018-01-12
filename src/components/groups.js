@@ -49,7 +49,9 @@ export default class Groups extends React.Component {
             <Button my={2} mx="auto" is={Link} to="/groups/new">Create new group</Button>
           )}
         </Box>
-        <Route exact path="/groups/new" component={NewGroupContainer}/>
+        <Box width={1}>
+          <Route exact path="/groups/new" component={NewGroupContainer}/>
+        </Box>
       </Flex>
     )
   }
