@@ -27,8 +27,10 @@ export function getCoinHistory(symbol){
     if(!getState().coins.histories[symbol]){
       dispatch({
         types: [GET_COIN_HISTORY, GET_COIN_HISTORY_SUCCESS, GET_COIN_HISTORY_FAILURE],
-        promise: (client) => {
-          return client.get(`/api/v1/coins/${symbol}/hist/`)
+          promise: (client) => {
+            // https://github.com/CoinCapDev/CoinCap.io#history1daycoin
+            const freq = '1day'; // 1, 7, 30, 90, 180, 365
+            return client.get(`/api/v1/coins/history/${freq}/${symbol}`)
         }
       })
     }
