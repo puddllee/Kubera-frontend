@@ -1,3 +1,5 @@
+import { routes } from 'shared/apiRoutes';
+
 export const GET_COINS = 'coins/GET_COINS';
 export const GET_COINS_SUCCESS = 'coins/GET_COINS_SUCCESS';
 export const GET_COINS_FAILURE = 'coins/GET_COINS_FAILURE';
@@ -11,7 +13,7 @@ export function getCoins(){
     dispatch({
       types: [GET_COINS, GET_COINS_SUCCESS, GET_COINS_FAILURE],
       promise: (client) => {
-        return client.get(`/api/v1/coins`)
+        return client.get(routes.coins.allCoins())
           .then((resp)=>{
             dispatch(getCoinHistory(resp[0].symbol));
             return resp;
@@ -30,7 +32,7 @@ export function getCoinHistory(symbol){
           promise: (client) => {
             // https://github.com/CoinCapDev/CoinCap.io#history1daycoin
             const freq = '1day'; // 1, 7, 30, 90, 180, 365
-            return client.get(`/api/v1/coins/history/${freq}/${symbol}`)
+            return client.get(routes.coins.coinHistory(freq, symbol));
         }
       })
     }

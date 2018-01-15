@@ -2,6 +2,7 @@ import {connect} from 'react-redux';
 import {push} from 'react-router-redux';
 import Login from 'components/login';
 import * as constants from "../shared/constants";
+import { routes } from 'shared/apiRoutes';
 
 const mapStateToProps = (state) => {
   const {auth} = state;
@@ -17,7 +18,7 @@ const mapDispatchToProps = (dispatch) => {
       }
     },
     onLoginButtonClick: () => {
-      window.location.href = `${process.env.REACT_APP_API_HOST}/api/v1/auth/google`;
+      window.location.replace(routes.auth.googleRedirect());
     }
   };
 };

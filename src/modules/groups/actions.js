@@ -1,5 +1,6 @@
 import {push} from 'react-router-redux';
 import * as messageActions from 'modules/messages/actions';
+import { routes } from 'shared/apiRoutes';
 
 export const GET_GROUPS = 'groups/GET_GROUPS';
 export const GET_GROUPS_SUCCESS = 'groups/GET_GROUPS_SUCCESS';
@@ -13,7 +14,7 @@ export function getGroups(){
     dispatch({
       types: [GET_GROUPS, GET_GROUPS_SUCCESS, GET_GROUPS_FAILURE],
       promise: (client) => {
-        return client.get(`/api/v1/groups`);
+        return client.get(routes.groups.getUserGroups());
       }
     })
   }
@@ -26,7 +27,7 @@ export function createGroup(group){
     dispatch({
       types: [CREATE_GROUP, CREATE_GROUP_SUCCESS, CREATE_GROUP_FAILURE],
       promise: (client) => {
-        return client.post('/api/v1/groups/', {data})
+        return client.post(routes.groups.createGroup(), { data })
           .then((response) => {
             dispatch(messageActions.addSuccessMessage('Group Created!'));
             dispatch(getGroups());

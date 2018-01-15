@@ -1,5 +1,6 @@
 import * as constants from 'shared/constants';
 import {push} from 'react-router-redux';
+import { routes } from 'shared/apiRoutes';
 
 export const GET_TOKEN = 'auth/GET_TOKEN';
 export const GET_TOKEN_SUCCESS = 'auth/GET_TOKEN_SUCCESS';
@@ -14,7 +15,7 @@ export function getToken(code){
     dispatch({
       types: [GET_TOKEN, GET_TOKEN_SUCCESS, GET_TOKEN_FAILURE],
       promise: (client) => {
-        return client.get(`/api/v1/auth/google/callback/?code=${code}`)
+        return client.get(routes.auth.googleCallback(code))
           .then((resp) => {
             window.localStorage.setItem(constants.API_STORAGE_KEY, resp.access_token);
 
@@ -32,7 +33,7 @@ export function getProfile(){
   return (dispatch) => {
     dispatch({
       types: [GET_PROFILE, GET_PROFILE_SUCCESS, GET_PROFILE_FAILURE],
-      promise: (client) => client.get('/api/v1/profile')
+      promise: (client) => client.get(routes.user.profile())
       // If there was an error fetching the profile,
       // boot back into login and delete the token that was being used
         .catch((err) => {
