@@ -182,3 +182,5 @@ typings/
 # End of https://www.gitignore.io/api/node,webstorm+all,jetbrains+all
 
 .env
+
+travis_dokku

@@ -1,0 +1,12 @@
+language: node_js
+node_js:
+- '9'
+before_install:
+- openssl aes-256-cbc -K $encrypted_4e716f6626e2_key -iv $encrypted_4e716f6626e2_iv
+  -in travis_dokku.enc -out .travis/travis_dokku -d
+deploy:
+  provider: script
+  skip_cleanup: true
+  script: ".travis/deploy.sh"
+  on:
+    branch: master
