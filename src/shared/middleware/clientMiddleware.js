@@ -27,7 +27,6 @@ export default function clientMiddleware(client){
           if (error.err && error.err.status === 401){
             dispatch(push('/login'))
           }
-          console.log(error);
           next({...rest, type: FAILURE, error: true, payload: error});
         }
       );
