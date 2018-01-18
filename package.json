@@ -23,6 +23,7 @@
     "react-router-dom": "4.2.2",
     "react-router-redux": "4.0.8",
     "react-scripts": "1.0.17",
+    "react-sparklines": "1.7.0",
     "react-vis": "1.8.1",
     "rebass": "1.0.4",
     "recharts": "1.0.0-beta.7",

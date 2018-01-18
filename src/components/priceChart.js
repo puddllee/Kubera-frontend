@@ -22,7 +22,7 @@ export default class PriceChart extends React.Component {
   }
 
   formatUTS(uts){
-    return moment(uts*1000).format('DD/MM/YY');
+    return moment(uts*1000).format('h:mm a');
   }
 
 
@@ -38,14 +38,14 @@ export default class PriceChart extends React.Component {
 
     return (
       <XYP
-        margin={{left: 60, right: 60, bottom: 60}}
+        margin={{left: 60, right: 60, bottom: 100}}
         style={{margin: 'auto'}}
         width={width}
         height={height}
       >
         <HorizontalGridLines style={{stroke: colors.lightSilver}}/>
         <VerticalGridLines style={{stroke: colors.lightSilver}}/>
-        <XAxis title="3 Days"
+        <XAxis title="1 Day"
                style={{
                 line: {stroke: colors.silver},
                 ticks: {stroke: colors.silver},

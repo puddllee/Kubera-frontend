@@ -17,12 +17,11 @@ const mapDispatchToProps = (dispatch) => {
       dispatch(coinActions.toggleCoinSelect(symbol));
     },
     onCoinListFetched: (list) => {
-      // Fetch the first 10 coins immediately
-      const initialFetchSize = 5;
+      const initialFetchSize = 50;
 
       for (let i=0; i < list.length; i++){
         if (i<=initialFetchSize) {
-          dispatch(coinActions.getCoinHistory(list[i].symbol));
+          setTimeout(()=>dispatch(coinActions.getCoinHistory(list[i].symbol)), i*250);
         }
       }
     }

@@ -62,7 +62,8 @@ export default class Home extends React.Component {
     const visibleCoins = filteredCoins ? filteredCoins.slice(0, visibleCoinLimit) : coins.coinList.slice(0, visibleCoinLimit);
     const chartHeight = window.innerHeight/4;
     const chartWidth = 4*window.innerWidth/5;
-    const chartedCoins = coins.selectedCoinSymbols.map((s)=>({symbol: s, data: coins.histories[s]}));
+    const history = (s) => coins.histories[s];
+    const chartedCoins = coins.selectedCoinSymbols.map((s)=>({symbol: s, data: history(s)}));
     const showChart = chartedCoins.filter((c)=>c.data && c.data.length > 0).length > 0;
 
     if (coins.loading.coinList){
@@ -100,7 +101,7 @@ export default class Home extends React.Component {
         </Box>
         {visibleCoins.map((c, idx) => (
           <Box width={[1, 1/2, 1/3, 1/4, 1/5]}  key={idx}>
-            <CoinListItem coin={c} onClick={this.handleCoinSelect(c.symbol).bind(this)}/>
+            <CoinListItem coin={c} history={history(c.symbol)} onClick={this.handleCoinSelect(c.symbol).bind(this)}/>
           </Box>
         ))}
         {visibleCoins.length !== coins.coinList.length &&
