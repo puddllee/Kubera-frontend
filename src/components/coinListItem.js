@@ -4,8 +4,8 @@ import colors from 'shared/colors';
 import {
   Avatar,
   Flex,
-  Text,
-  Box
+  Box,
+  Truncate
 } from 'rebass';
 import { Sparklines, SparklinesLine } from 'react-sparklines';
 
@@ -49,7 +49,9 @@ export default class CoinListItem extends React.Component {
         <Avatar size={32} src={coin.image} mr={2}/>
       </Box>
       <Box w={4/6} mx="auto">
-        <Text f={[1,2,3]}>{coin.name}</Text>
+        <Truncate f={[1,2,3]}>
+          {coin.name}
+        </Truncate>
       </Box>
       <Box w={1/6} ml="auto">
         <Sparklines data={data}>
