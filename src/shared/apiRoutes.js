@@ -1,18 +1,19 @@
-
-const apiBase = process.env.NODE_ENV === 'production'
-      ? 'https://api.kuberaexchange.com'
-      : 'http://localhost:4000';
+const apiBase =
+  process.env.NODE_ENV === 'production'
+    ? 'https://api.kuberaexchange.com'
+    : 'http://localhost:4000';
 const buildRoute = path => `${apiBase}/api/v1/${path}`;
 
 const authRoutes = {
   googleRedirect: () => buildRoute('auth/google'),
-  googleCallback: (code) => buildRoute(`auth/google/callback?code=${code}`)
+  googleCallback: code => buildRoute(`auth/google/callback?code=${code}`)
 };
 
 const coinRoutes = {
   allCoins: () => buildRoute('coins'),
-  getCoin: (symbol) => buildRoute(`coins/${symbol}`),
-  coinHistory: (freq, symbol) => buildRoute(`coins/history/${freq}/${symbol}`)
+  getCoin: symbol => buildRoute(`coins/${symbol}`),
+  coinHistory: (freq, symbol) => buildRoute(`coins/history/${freq}/${symbol}`),
+  sparklines: () => buildRoute('coins/sparklines')
 };
 
 const userRoutes = {
@@ -21,10 +22,10 @@ const userRoutes = {
 
 const groupRoutes = {
   createGroup: () => buildRoute('groups'),
-  joinGroup: (uid) => buildRoute(`groups/${uid}/join`),
+  joinGroup: uid => buildRoute(`groups/${uid}/join`),
   getUserGroups: () => buildRoute('groups'),
-  getGroup: (uid) => buildRoute(`groups/${uid}`)
-}
+  getGroup: uid => buildRoute(`groups/${uid}`)
+};
 
 export const routes = {
   auth: authRoutes,

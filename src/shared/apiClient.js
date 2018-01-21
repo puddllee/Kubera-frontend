@@ -3,9 +3,9 @@ import * as constants from "shared/constants";
 
 const methods = ['get', 'post', 'put', 'patch', 'del'];
 
-function formatUrl(path){
-  return path[0] !== '/' ? `/${path}` : path;
-}
+// function formatUrl(path){
+//   return path[0] !== '/' ? `/${path}` : path;
+// }
 
 export default class ApiClient {
   constructor(){

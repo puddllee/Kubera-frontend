@@ -38,14 +38,14 @@ export default class PriceChart extends React.Component {
 
     return (
       <XYP
-        margin={{left: 60, right: 60, bottom: 60}}
+        margin={{left: 60, right: 60, bottom: 100}}
         style={{margin: 'auto'}}
         width={width}
         height={height}
       >
         <HorizontalGridLines style={{stroke: colors.lightSilver}}/>
         <VerticalGridLines style={{stroke: colors.lightSilver}}/>
-        <XAxis title="3 Days"
+        <XAxis title="30 Days"
                style={{
                 line: {stroke: colors.silver},
                 ticks: {stroke: colors.silver},

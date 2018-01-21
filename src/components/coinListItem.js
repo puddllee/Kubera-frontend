@@ -4,8 +4,10 @@ import colors from 'shared/colors';
 import {
   Avatar,
   Flex,
-  Text
+  Text,
+  Box
 } from 'rebass';
+import { Sparklines, SparklinesLine } from 'react-sparklines';
 
 export default class CoinListItem extends React.Component {
   constructor(props){
@@ -21,8 +23,17 @@ export default class CoinListItem extends React.Component {
   }
 
   render() {
-    const {coin} = this.props;
+    const {coin, history} = this.props;
     const {selected} = this.state;
+    let data;
+    if (history){
+      data = history.map((d)=>d.price);
+    } else {
+      data = [];
+    }
+
+    // Red if the first price point is negative, green if positive
+    const lineColor = data.length && data[0] > data[data.length-1] ? "red" : "green";
 
     const HoverFlex = styled(Flex)`
       ${selected ? `background-color: ${colors.moonGrey};` : ''}
@@ -34,8 +45,17 @@ export default class CoinListItem extends React.Component {
 
     return (
     <HoverFlex wrap my={2} mx={1}  p={2} align="center" onClick={this.handleClick.bind(this)}>
-      <Avatar size={32} src={coin.image} mr={2}/>
-      <Text f={3}>{coin.name}</Text>
+      <Box w={1/6} ml="auto">
+        <Avatar size={32} src={coin.image} mr={2}/>
+      </Box>
+      <Box w={4/6} mx="auto">
+        <Text f={[1,2,3]}>{coin.name}</Text>
+      </Box>
+      <Box w={1/6} ml="auto">
+        <Sparklines data={data}>
+          <SparklinesLine color={lineColor}/>
+        </Sparklines>
+      </Box>
     </HoverFlex>
     )
   }
