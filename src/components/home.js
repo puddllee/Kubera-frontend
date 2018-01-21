@@ -100,7 +100,7 @@ export default class Home extends React.Component {
           </form>
         </Box>
         {visibleCoins.map((c, idx) => (
-          <Box width={[1, 1/2, 1/3, 1/4, 1/5]}  key={idx}>
+          <Box width={[1, 1/2, 1/3]}  key={idx}>
             <CoinListItem coin={c} history={coins.sparklines[c.symbol]} onClick={this.handleCoinSelect(c.symbol).bind(this)}/>
           </Box>
         ))}
