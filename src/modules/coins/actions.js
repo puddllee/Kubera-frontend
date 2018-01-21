@@ -6,6 +6,9 @@ export const GET_COINS_FAILURE = 'coins/GET_COINS_FAILURE';
 export const GET_COIN_HISTORY = 'coins/GET_COIN_HISTORY';
 export const GET_COIN_HISTORY_SUCCESS = 'coins/GET_COIN_HISTORY_SUCCESS';
 export const GET_COIN_HISTORY_FAILURE = 'coins/GET_COIN_HISTORY_FAILURE';
+export const GET_SPARKLINES = 'coins/GET_COIN_SPARKLINES';
+export const GET_SPARKLINES_SUCCESS = 'coins/GET_COIN_SPARKLINES_SUCCESS';
+export const GET_SPARKLINES_FAILURE = 'coins/GET_COIN_SPARKLINES_FAILURE';
 export const SET_SELECTED_COIN_SYMBOLS = 'coins/SET_SELECTED_COIN_SYMBOLS';
 
 export function getCoins() {
@@ -40,6 +43,13 @@ export function getCoinHistory(symbol) {
       });
     }
   };
+}
+
+export function getSparklines(){
+  return {
+      types: [GET_SPARKLINES, GET_SPARKLINES_SUCCESS, GET_SPARKLINES_FAILURE],
+      promise: client => client.get(routes.coins.sparklines())
+  }
 }
 
 export function toggleCoinSelect(symbol) {

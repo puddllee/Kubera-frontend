@@ -101,7 +101,7 @@ export default class Home extends React.Component {
         </Box>
         {visibleCoins.map((c, idx) => (
           <Box width={[1, 1/2, 1/3, 1/4, 1/5]}  key={idx}>
-            <CoinListItem coin={c} history={history(c.symbol)} onClick={this.handleCoinSelect(c.symbol).bind(this)}/>
+            <CoinListItem coin={c} history={coins.sparklines[c.symbol]} onClick={this.handleCoinSelect(c.symbol).bind(this)}/>
           </Box>
         ))}
         {visibleCoins.length !== coins.coinList.length &&

@@ -16,14 +16,8 @@ const mapDispatchToProps = (dispatch) => {
       dispatch(coinActions.getCoinHistory(symbol));
       dispatch(coinActions.toggleCoinSelect(symbol));
     },
-    onCoinListFetched: (list) => {
-      const initialFetchSize = 50;
-
-      for (let i=0; i < list.length; i++){
-        if (i<=initialFetchSize) {
-          setTimeout(()=>dispatch(coinActions.getCoinHistory(list[i].symbol)), i*250);
-        }
-      }
+    onCoinListFetched: () => {
+      dispatch(coinActions.getSparklines())
     }
   };
 };

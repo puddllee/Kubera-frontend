@@ -5,6 +5,9 @@ import {
   GET_COIN_HISTORY,
   GET_COIN_HISTORY_SUCCESS,
   GET_COIN_HISTORY_FAILURE,
+  GET_SPARKLINES,
+  GET_SPARKLINES_SUCCESS,
+  GET_SPARKLINES_FAILURE,
   SET_SELECTED_COIN_SYMBOLS
 } from './actions'
 
@@ -13,6 +16,7 @@ function initialState(){
     coinList: [],
     loading: {coinList: true, coinHistory: true},
     histories: {},
+    sparklines: {},
     selectedCoinSymbols: [],
   }
 }
@@ -52,6 +56,22 @@ export default function reducer(state=initialState(), action={}){
       return {
         ...state,
         loading: {...state.loading, coinHistory: false}
+      };
+    case GET_SPARKLINES:
+      return {
+        ...state,
+        loading: {...state.loading, sparklines: true}
+      };
+    case GET_SPARKLINES_SUCCESS:
+      return {
+          ...state,
+        sparklines: action.payload,
+        loading: {...state.loading, sparklines: false}
+      };
+    case GET_SPARKLINES_FAILURE:
+      return {
+        ...state,
+        loading: {...state.loading, sparklines: false}
       };
     case SET_SELECTED_COIN_SYMBOLS:
       return {
