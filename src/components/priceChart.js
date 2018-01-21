@@ -22,7 +22,7 @@ export default class PriceChart extends React.Component {
   }
 
   formatUTS(uts){
-    return moment(uts*1000).format('h:mm a');
+    return moment(uts*1000).format('DD/MM/YY');
   }
 
 
@@ -45,7 +45,7 @@ export default class PriceChart extends React.Component {
       >
         <HorizontalGridLines style={{stroke: colors.lightSilver}}/>
         <VerticalGridLines style={{stroke: colors.lightSilver}}/>
-        <XAxis title="1 Day"
+        <XAxis title="30 Days"
                style={{
                 line: {stroke: colors.silver},
                 ticks: {stroke: colors.silver},
