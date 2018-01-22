@@ -23,7 +23,7 @@ export default class Base extends React.Component {
 
   render(){
     return (
-      <Rebass>
+      <Rebass theme={{font: '"Avenir Next", Helvetica, sans-serif'}}>
         <Flex wrap>
           <Box width={1} mx={2}>
             <RouterLink exact to="/">Home</RouterLink>
