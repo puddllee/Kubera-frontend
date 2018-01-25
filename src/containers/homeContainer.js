@@ -1,25 +1,12 @@
 import {connect} from 'react-redux';
 import Home from 'components/home';
-import * as coinActions from 'modules/coins/actions';
 
-const mapStateToProps = (state) => {
-  const coins = state.coins;
-  return {coins};
+const mapStateToProps = () => {
+  return {};
 };
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-    onMount: () => {
-      dispatch(coinActions.getCoins());
-    },
-    onCoinSelect: (symbol) => {
-      dispatch(coinActions.getCoinHistory(symbol));
-      dispatch(coinActions.toggleCoinSelect(symbol));
-    },
-    onCoinListFetched: () => {
-      dispatch(coinActions.getSparklines())
-    }
-  };
+const mapDispatchToProps = () => {
+  return {};
 };
 
 export default connect(
