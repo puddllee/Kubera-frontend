@@ -27,7 +27,6 @@ export default class Home extends React.Component {
 
   handleFilterCoins(e){
     e.preventDefault();
-    console.log(this.state.filterQuery);
 
     const query = this.state.filterQuery;
     const coins = this.props.coins.coinList;

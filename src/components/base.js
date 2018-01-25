@@ -6,6 +6,7 @@ import {
 } from 'rebass';
 import {
   Route,
+  Switch
 } from 'react-router-dom';
 
 import Messages from 'containers/messagesContainer';
@@ -14,6 +15,7 @@ import HomeContainer from 'containers/homeContainer';
 import Exchange from 'components/exchange';
 import ProfileContainer from 'containers/profileContainer';
 import GroupsContainer from 'containers/groupsContainer';
+import GroupDetail from 'components/groupDetail';
 
 export default class Base extends React.Component {
   componentWillMount(){
@@ -34,7 +36,11 @@ export default class Base extends React.Component {
           <Box width={1} m={1}>
             <Route exact path="/" component={HomeContainer}/>
             <Route exact path="/exchange" component={Exchange}/>
-            <Route path="/groups" component={GroupsContainer}/>
+            <Switch>
+              <Route path="/groups/new" component={GroupsContainer}/>
+              <Route path="/groups/:uid" component={GroupDetail}/>
+              <Route path="/groups" component={GroupsContainer}/>
+            </Switch>
             <Route exact path="/profile" component={ProfileContainer}/>
           </Box>
         </Flex>

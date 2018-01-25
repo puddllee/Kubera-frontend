@@ -10,6 +10,7 @@ import {
   Button
 } from 'rebass';
 import {Route, Link}  from 'react-router-dom';
+import styled from 'styled-components';
 import NewGroupContainer from 'containers/newGroupContainer';
 import colors from 'shared/colors';
 
@@ -18,10 +19,24 @@ export default class Groups extends React.Component {
     this.props.onMount();
   }
 
+  handleGroupSelected(uid){
+    return () => {
+      this.props.onGroupSelected(uid);
+    }
+  }
+
   render() {
     const {groups, loading} = this.props.groups;
     const {pathname} = this.props.location;
     const onMainPage = pathname === '/groups';
+
+    // Make the card appear "clickable"
+    const HoverCard = styled(Card)`
+      &:hover{
+        cursor: pointer;
+        background-color: ${colors.moonGrey};
+      }
+    `;
 
     if (loading.groups){
       return (
@@ -55,11 +70,11 @@ export default class Groups extends React.Component {
           <Route exact path="/groups/new" component={NewGroupContainer}/>
           <Flex wrap>
             {groups.map((group)=>(
-              <Card width={256} key={group.uid} p={3} m={2}>
+              <HoverCard width={256} key={group.uid} p={3} m={2} onClick={this.handleGroupSelected.bind(this)(group.uid)}>
                 <Text center>
                   {group.name}
                 </Text>
-              </Card>
+              </HoverCard>
             ))}
           </Flex>
         </Box>
