@@ -27,7 +27,9 @@ export default class Login extends React.Component {
             <Box m="auto" ml={2}>
               <GoogleLoginButton onClick={this.handleLoginButtonClick.bind(this)}/>
             </Box>
-            <CoinListContainer/>
+            <Box width={1} mt={3}>
+              <CoinListContainer/>
+            </Box>
           </Box>
         </Flex>
         <Messages/>
