@@ -27,6 +27,7 @@ export default class Home extends React.Component {
 
   handleFilterCoins(e){
     e.preventDefault();
+    console.log(this.state.filterQuery);
 
     const query = this.state.filterQuery;
     const coins = this.props.coins.coinList;
@@ -37,7 +38,7 @@ export default class Home extends React.Component {
   }
 
   handleFilterQueryChange(e){
-    this.setState({filterQuery: e.target.value});
+    this.setState({...this.state, filterQuery: e.target.value});
   }
 
   handleShowMoreCoins(){
@@ -95,10 +96,10 @@ export default class Home extends React.Component {
           </Box>
         )}
         <Box width={1}>
-          <form onSubmit={this.handleFilterCoins}>
+          <form onSubmit={this.handleFilterCoins.bind(this)}>
             <Input name="query"
                    f={[1,2,3]}
-                   onChange={this.handleFilterCoins.bind(this)}
+                   onChange={this.handleFilterQueryChange.bind(this)}
                    placeholder="Filter Coins"
             />
           </form>
