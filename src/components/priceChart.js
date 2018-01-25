@@ -2,7 +2,7 @@ import React from 'react';
 import moment from 'moment';
 import styled from 'styled-components';
 import {
-  XYPlot,
+  FlexibleWidthXYPlot,
   XAxis,
   YAxis,
   HorizontalGridLines,
@@ -27,8 +27,8 @@ export default class PriceChart extends React.Component {
 
 
   render() {
-    const {width, height, coins, loading} = this.props;
-    const XYP = styled(XYPlot)`margin: auto;`;
+    const {height, coins, loading} = this.props;
+    const XYP = styled(FlexibleWidthXYPlot)`margin: auto;`;
 
     if (loading){
       return 'Loading Coin History';
@@ -38,9 +38,7 @@ export default class PriceChart extends React.Component {
 
     return (
       <XYP
-        margin={{left: 60, right: 60, bottom: 100}}
-        style={{margin: 'auto'}}
-        width={width}
+        margin={{left: 50, right: 10, bottom: 100}}
         height={height}
       >
         <HorizontalGridLines style={{stroke: colors.lightSilver}}/>

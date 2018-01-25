@@ -58,8 +58,19 @@ export default class Home extends React.Component {
     const visibleCoins = filteredCoins ? filteredCoins.slice(0, visibleCoinLimit) : coinList.slice(0, visibleCoinLimit);
     const chartedCoins = selectedCoinSymbols.map((s) => ({symbol: s, data: histories[s]}));
     const showChart = chartedCoins.filter((c) => c.data && c.data.length > 0).length > 0;
-    const height = window.innerHeight/4;
-    const width = 4*window.innerWidth/5;
+
+    // Set the height of the coin chart to half of the window height if the browser is portrait mobile
+    // If the browser is landscape mobile, set it to the 3/5 window height
+    // else, one quarter of the screen height
+    let height = window.innerHeight/4;
+    const mqPortrait = window.matchMedia("only screen and (orientation: portrait)");
+    const mqLandscape = window.matchMedia("only screen and (orientation: landscape) and (max-device-width: 812px)");
+
+    if(mqPortrait.matches){
+      height = window.innerHeight/2;
+    } else if(mqLandscape.matches){
+      height = 3*window.innerHeight/5;
+    }
 
     if (loading.coinList){
       return (
@@ -80,7 +91,7 @@ export default class Home extends React.Component {
         )}
         {showChart && !loading.coinHistory && (
           <Box width={1} mx="auto" mb={5}>
-            <PriceChart coins={chartedCoins} loading={loading.coinHistory} width={width} height={height}/>
+            <PriceChart coins={chartedCoins} loading={loading.coinHistory} height={height}/>
           </Box>
         )}
         <Box width={1}>
