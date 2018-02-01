@@ -112,7 +112,7 @@ export default class Home extends React.Component {
         {visibleCoins.length !== coinList.length && (
           <Box width={1}>
             <Flex align="center">
-              <Button mx="auto" mt={2} bg={colors.navy} onClick={this.handleShowMoreCoins}>Show More Coins</Button>
+              <Button mx="auto" mt={2} bg={colors.navy} onClick={this.handleShowMoreCoins.bind(this)}>Show More Coins</Button>
             </Flex>
           </Box>
         )}
