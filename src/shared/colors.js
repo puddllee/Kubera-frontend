@@ -4,12 +4,18 @@ export const moonGrey = '#CCCCCC';
 export const lightSilver = '#AAAAAA';
 export const silver = '#999999';
 
+export const backgroundColor = lightGrey;
+export const textColor = navy;
+
 const colors = {
   navy,
   lightGrey,
   moonGrey,
   lightSilver,
-  silver
+  silver,
+
+  backgroundColor,
+  textColor
 };
 
 export default colors;

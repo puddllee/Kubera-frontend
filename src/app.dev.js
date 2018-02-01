@@ -22,8 +22,8 @@ class App extends Component {
   render() {
     injectGlobal`
       body {
-        color: ${colors.navy};
-        background-color: ${colors.lightGrey};
+        color: ${colors.textColor};
+        background-color: ${colors.backgroundColor};
       }
     `;
 

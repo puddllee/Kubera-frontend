@@ -3,8 +3,11 @@ import {
   Flex,
   Box,
   Heading,
-  Divider
+  Divider,
+  Toolbar
 } from 'rebass';
+
+import RouterLink from 'components/routerLink';
 
 import colors from 'shared/colors';
 
@@ -32,6 +35,10 @@ export default class GroupDetail extends React.Component{
         <Box width={1}>
           <Heading f={[3,6,9]}>{group.name}</Heading>
           <Divider color={colors.navy}/>
+          <Toolbar bg={colors.backgroundColor} color={colors.textColor}>
+            <RouterLink to={`/groups/${group.uid}/leaderboard`}>Leaderboard</RouterLink>
+            <RouterLink to={`/groups/${group.uid}/portfolio`}>Your Portfolio</RouterLink>
+          </Toolbar>
         </Box>
       </Flex>
     )
