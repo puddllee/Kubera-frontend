@@ -5,6 +5,9 @@ import { routes } from 'shared/apiRoutes';
 export const GET_GROUPS = 'groups/GET_GROUPS';
 export const GET_GROUPS_SUCCESS = 'groups/GET_GROUPS_SUCCESS';
 export const GET_GROUPS_FAILURE = 'groups/GET_GROUPS_FAILURE';
+export const GET_GROUP = 'groups/GET_GROUP';
+export const GET_GROUP_SUCCESS = 'groups/GET_GROUP_SUCCESS';
+export const GET_GROUP_FAILURE = 'groups/GET_GROUP_FAILURE';
 export const CREATE_GROUP = 'groups/CREATE_GROUP';
 export const CREATE_GROUP_SUCCESS = 'groups/CREATE_GROUP_SUCCESS';
 export const CREATE_GROUP_FAILURE = 'groups/CREATE_GROUP_FAILURE';
@@ -40,5 +43,14 @@ export function createGroup(group){
           });
       }
     })
+  }
+}
+
+export function getGroup(uid){
+  return {
+    types: [GET_GROUP, GET_GROUP_SUCCESS, GET_GROUP_FAILURE],
+    promise: (client) => {
+      return client.get(routes.groups.getGroup(uid));
+    }
   }
 }

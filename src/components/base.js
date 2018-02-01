@@ -15,7 +15,7 @@ import HomeContainer from 'containers/homeContainer';
 import Exchange from 'components/exchange';
 import ProfileContainer from 'containers/profileContainer';
 import GroupsContainer from 'containers/groupsContainer';
-import GroupDetail from 'components/groupDetail';
+import GroupDetailContainer from 'containers/groupDetailContainer';
 
 export default class Base extends React.Component {
   componentWillMount(){
@@ -38,7 +38,7 @@ export default class Base extends React.Component {
             <Route exact path="/exchange" component={Exchange}/>
             <Switch>
               <Route path="/groups/new" component={GroupsContainer}/>
-              <Route path="/groups/:uid" component={GroupDetail}/>
+              <Route path="/groups/:uid" component={GroupDetailContainer}/>
               <Route path="/groups" component={GroupsContainer}/>
             </Switch>
             <Route exact path="/profile" component={ProfileContainer}/>
