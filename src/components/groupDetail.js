@@ -1,3 +1,5 @@
+// @flow
+
 import React from 'react';
 import {
   Flex,
@@ -11,7 +13,12 @@ import RouterLink from 'components/routerLink';
 
 import colors from 'shared/colors';
 
-export default class GroupDetail extends React.Component{
+type Props = {
+  onMount: () => void,
+  groups: object
+}
+
+export default class GroupDetail extends React.Component<Props>{
   componentWillMount(){
     this.props.onMount();
   }
